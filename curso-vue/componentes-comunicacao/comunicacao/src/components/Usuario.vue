@@ -5,15 +5,20 @@
     <p>Nome é
       <strong>{{ nome }}</strong>
     </p>
+    <p>Idade é <strong>{{ idade }}</strong></p>
     <button @click="alterarNome">Alterar Nome</button>
     <hr>
     <div class="componentes">
       <app-usuario-info
         :usuarioNome="nome"
+        :idade="idade"
         @nomeMudou="nome = $event"
         :reiniciarFn="reiniciarNome"
       />
-      <app-usuario-editar/>
+      <app-usuario-editar 
+        :idade="idade"
+        @idadeMudou="idade = $event"
+      />
     </div>
   </div>
 </template>
@@ -26,7 +31,8 @@ export default {
   components: { AppUsuarioInfo, AppUsuarioEditar },
   data() {
     return {
-      nome: "Pedro"
+      nome: "Pedro",
+      idade: 21
     };
   },
   methods: {
