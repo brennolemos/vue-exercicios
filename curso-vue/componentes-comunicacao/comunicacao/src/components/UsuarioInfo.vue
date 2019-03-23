@@ -10,9 +10,11 @@
 </template>
 
 <script>
+import barramento from '@/barramento'
+
 export default {
     props: {
-        usuarioNome: {
+        nome: {
             type: String,
             // required: true,
             default: 'Anônimo'
@@ -25,12 +27,17 @@ export default {
     },
     methods: {
         inverterNome() {
-            return this.usuarioNome.split('').reverse().join('');
+            return this.nome.split('').reverse().join('');
         },
         reiniciarNome() {
-            this.usuarioNome = 'Pedro'
-            this.$emit('nomeMudou', this.usuarioNome)
+            this.nome = 'Pedro'
+            this.$emit('nomeMudou', this.nome)
         }
+    },
+    created() {
+        barramento.$on('idadeMudou', (idade) => {
+            this.idade = idade
+        })
     }
 }
 </script>

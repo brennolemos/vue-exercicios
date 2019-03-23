@@ -10,14 +10,14 @@
     <hr>
     <div class="componentes">
       <app-usuario-info
-        :usuarioNome="nome"
+        :nome="nome"
         :idade="idade"
         @nomeMudou="nome = $event"
         :reiniciarFn="reiniciarNome"
       />
       <app-usuario-editar 
         :idade="idade"
-        @idadeMudou="idade = $event"
+        
       />
     </div>
   </div>
