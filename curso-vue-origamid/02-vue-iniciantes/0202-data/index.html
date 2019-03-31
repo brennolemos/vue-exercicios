@@ -10,10 +10,25 @@
 </head>
 
 <body>
-    
+    <div id="app">
+        {{empresa}}, {{produto}}
+
+        <h3>Quadrado</h3>
+        <strong>Perímetro</strong> {{lado*4}}
+        <strong>Área</strong> {{lado*lado}}
+    </div>
 
     <script>
-    
+
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                empresa: "Apple",
+                produto: "iPhone",
+                lado: 5
+            }
+        });
+
 
     </script>
 </body>
