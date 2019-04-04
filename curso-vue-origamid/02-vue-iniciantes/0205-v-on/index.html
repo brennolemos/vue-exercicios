@@ -10,10 +10,42 @@
 </head>
 
 <body>
-    
+
 
     <div id="app">
-       
+        <ul>
+            <li>
+                <a @click.prevent="puxarAcao" href="https://api.iextrading.com/1.0/stock/aapl/quote">Apple</a>
+            </li>
+            <li>
+                <a @click.prevent="puxarAcao" href="https://api.iextrading.com/1.0/stock/googl/quote">Google</a>
+            </li>
+            <li>
+                <a @click.prevent="puxarAcao" href="https://api.iextrading.com/1.0/stock/amzn/quote">Amazon</a>
+            </li>
+            <li>
+                <a @click.prevent="puxarAcao" href="https://api.iextrading.com/1.0/stock/ebay/quote">Ebay</a></li>
+            <li>
+                <a @click.prevent="puxarAcao" href="https://api.iextrading.com/1.0/stock/pypl/quote">Paypal</a>
+            </li>
+        </ul>
+
+        <div>
+            <p>Empresa: {{acao.companyName}}</p>
+            <p>Valor de Mercado: {{acao.marketCap}}</p>
+            <p>Valor da Ação: {{acao.latestPrice}}</p>
+        </div>
+        <!--
+            Utilizando API
+            https://api.iextrading.com/1.0/stock/aapl/quote
+          
+            Adicione um evento de clique a cada <a> do html
+            acima e previna o comportamento padrão.
+          
+            Faça o fetch dos dados do href ao click e mostre na
+            interface o companyName, latestPrice, marketCap
+          -->
+
     </div>
 
 
@@ -21,7 +53,20 @@
     <script>
         const vm = new Vue({
             el: '#app',
-            
+            data: {
+                acao: {}
+            },
+            methods: {
+                puxarAcao(event) {
+                    const url = event.currentTarget.href;
+                    fetch(url)
+                        .then(r => r.json())
+                        .then(r => {
+                            this.acao = r;
+                        });
+                }
+            }
+
         });
 
 
