@@ -22,16 +22,17 @@
 
     Ex de campo select:
 
-    <select name="paises" id="paises" v-model="selecionado">
-        <option v-for="pais in paises" :value="pais.name">
-        {{pais.name}}
-        </option>
-    </select>
-    -->
+-->
 
 
     <div id="app">
-       {{nomeCompleto}}
+
+        <button @click="puxarPaises">Puxar</button>
+        <select name="paises" id="paises" v-model="paisSelecionado">
+            <option v-for="pais in paises" :value="pais.name">{{pais.name}}</option>
+        </select>
+        <p>{{paisSelecionado}}</p>
+        {{capital.capital}}
     </div>
 
 
@@ -40,15 +41,25 @@
         const vm = new Vue({
             el: '#app',
             data: {
-                nome: 'Breno',
-                sobrenome: 'Lemos'
+                paisSelecionado: '',
+                capital: '',
+                paises: {}
             },
-            computed: {
-                nomeCompleto() {
-                    return this.nome + ' ' + this.sobrenome;
+            methods: {
+                puxarPaises() {
+                    fetch('https://restcountries.eu/rest/v2/all')
+                        .then(r => r.json())
+                        .then(r => {
+                            this.paises = r;
+                        })
+                }
+            },
+            watch: {
+                paisSelecionado(valor) {
+                    this.capital = this.paises.find((pais) => pais.name === valor)
                 }
             }
-            
+
         });
 
 
