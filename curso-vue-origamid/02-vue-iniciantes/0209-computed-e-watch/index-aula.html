@@ -17,6 +17,9 @@
             </li>
         </ul>
         <button @click="removerCarro">Remover Carro</button>
+
+        <p>{{contador}}</p>
+        <button @click="contador++">Adicionar</button>
     </div>
 
     <script>
@@ -36,16 +39,25 @@
                         marca: "Tesla",
                         cor: "Azul"
                     }
-                ]
+                ],
+                contador: 0
             },
             computed: {
                 carrosAzuis() {
-                    return this.carros.filter(({cor}) => cor === 'Azul');
+                    return this.carros.filter(({ cor }) => cor === 'Azul');
                 }
             },
             methods: {
                 removerCarro() {
                     this.carros.pop();
+                }
+            },
+            watch: {
+                contador(valorNovo, valorAntigo) {
+                    console.log(valorNovo, valorAntigo);
+                },
+                carros(valorNovo, valorAntigo) {
+                    console.log(valorNovo, valorAntigo);
                 }
             }
         });
