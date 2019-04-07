@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Vue.js</title>
+</head>
+
+<body>
+    <div id="app">
+        <p :class="[cor, background]">Texto Azul</p>
+        <p :class="{ativo: estaAtivo, verde: elementoVerde}">Mostrar Texto</p>
+        <button @click="estaAtivo = !estaAtivo">Click</button>
+
+        <a :style="{background: bgColor, fontSize: fontSize + 'px'}">Estilize Ele</a>
+        <button @click="fontSize++">Aumentar</button>
+
+        <p :style="estiloBotao">Novo Texto</p>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                cor: 'azul',
+                background: 'vermelho',
+                estaAtivo: false,
+                elementoVerde: true,
+                bgColor: 'tomato',
+                fontSize: 20,
+                estiloBotao: {
+                    background: 'tomato',
+                    fontSize: '20px',
+                    color: '#fff'
+                }
+            }
+            
+        });
+
+    </script>
+
+    <style>
+        .vermelho {
+            background: red;
+        }
+        .azul {
+            color: blue;
+        }
+
+        .verde {
+            color: green;
+        }
+
+        .ativo {
+            background: red;
+        }
+    </style>
+</body>
+
+</html>
