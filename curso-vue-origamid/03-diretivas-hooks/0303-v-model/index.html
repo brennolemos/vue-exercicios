@@ -35,42 +35,51 @@
 
 
     <div id="app">
-        <input type="color" v-model="btn.background">
-        <label for="width">Width</label>
-        <input id="width" type="text" v-model="btn.width">
-        <label for="height">height</label>
-        <input id="height" type="text" v-model="btn.height">
-        <label for="fontSize">Font Size</label>
-        <input id="fontSize" type="text" v-model="btn.fontSize">
-        <label for="fontFamily">Font Family</label>
-        <input id="fontFamily" type="text" v-model="btn.fontFamily">
-        {{btn.background}}
-        <a :style="btn" href="#">Clique Aqui</a>
+        <form>
+            <label for="nome">Nome</label>
+            <input type="text" name="nome" id="nome" v-model="nome">
+            <label for="email">email</label>
+            <input type="text" name="email" id="email" v-model="email">
+            <label for="telefone">telefone</label>
+            <input type="text" name="telefone" id="telefone" v-model="telefone">
+            <label for="mensagem">mensagem</label>
+            <textarea name="mensagem" id="mensagem" v-model="mensagem"></textarea>
+
+            <br>
+            <input @click.prevent="enviarFormulario" type="submit" value="Enviar">
+        </form>
+        <div>
+            {{resultado.nome}}, {{resultado.email}}, {{resultado.telefone}}, {{resultado.mensagem}}
+        </div>
     </div>
 
     <script>
         const vm = new Vue({
             el: '#app',
             data: {
-                btn: {
-                    background: '#000',
-                    width: '100px',
-                    height: '40px',
-                    fontSize: '20px',
-                    fontFamily: 'monospace'
+                nome: '',
+                email: '',
+                telefone: '',
+                mensagem: '',
+                resultado: {}
+            },
+            methods: {
+                enviarFormulario() {
+                    this.resultado = {
+                        nome: this.nome,
+                        email: this.email,
+                        telefone: this.telefone,
+                        mensagem: this.mensagem,
+                    }
                 }
             }
+
         });
     </script>
 
     <style>
         label {
             display: block;
-        }
-
-        a {
-            display: block;
-            margin-top: 100px;
         }
     </style>
 
