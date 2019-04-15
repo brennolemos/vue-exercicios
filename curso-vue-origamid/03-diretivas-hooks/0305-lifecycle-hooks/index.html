@@ -14,28 +14,35 @@
 
 
     <div id="app">
-        <button @click="contador++">Total: {{contador}}</button>
-        <button @click="destruir">Destruir</button>
+        <button @click="contador++">Adicionar {{contador}}</button>
+        <ul>
+            <li v-for="(valor, chave) in github">{{chave}}: {{valor}}</li>
+        </ul>
+
     </div>
 
     <script>
         const vm = new Vue({
             el: '#app',
             data: {
+                github: {},
                 contador: 0
             },
+            updated() {
+                document.title = this.contador;
+            },
             methods: {
-                destruir() {
-                    this.$destroy();
+                puxarGithub() {
+                    fetch('https://api.github.com/users/brennolemos')
+                        .then(r => r.json())
+                        .then(r => {
+                            this.github = r;
+                        })
                 }
             },
-            beforeUpdate() {
-                console.log('Teste')
-            },
-            updated() {
-                console.log('Teste')
-            },
-
+            created() {
+                this.puxarGithub();
+            }
         });
     </script>
 
