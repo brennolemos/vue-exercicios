@@ -10,17 +10,31 @@
 </head>
 
 <body>
-  
+
 
 
     <div id="app">
-        
+        <button @click="contador++">Total: {{contador}}</button>
+        <button @click="destruir">Destruir</button>
     </div>
 
     <script>
         const vm = new Vue({
             el: '#app',
-            
+            data: {
+                contador: 0
+            },
+            methods: {
+                destruir() {
+                    this.$destroy();
+                }
+            },
+            beforeUpdate() {
+                console.log('Teste')
+            },
+            updated() {
+                console.log('Teste')
+            },
 
         });
     </script>
