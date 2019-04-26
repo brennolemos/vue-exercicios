@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <title>Vue.js</title>
+</head>
+
+<body>
+    <div id="app">
+        <componente-global></componente-global>
+        <componente-local></componente-local>
+    </div>
+
+    <script>
+        // Vue.component('BotaoContador', {
+        //     data() {
+        //         return {
+        //             total: 0
+        //         }
+        //     },
+        //     template: `<button @click="total++">Contar: {{total}} </button>`,
+        // })
+
+        const ComponenteLocal = {
+            name: 'ComponenteLocal',
+            template: `<p>Componente Local</p>`
+        }
+
+        Vue.component('ComponenteGlobal', {
+            template: `<p>Isso é global</p>`
+        });
+
+        const vm = new Vue({
+            el: '#app',
+            components: {
+                ComponenteLocal
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
