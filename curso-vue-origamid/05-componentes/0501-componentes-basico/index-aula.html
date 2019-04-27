@@ -11,36 +11,23 @@
 
 <body>
     <div id="app">
-        <componente-global></componente-global>
-        <componente-local></componente-local>
+        <botao-contador></botao-contador>
+        <menu-principal></menu-principal>
     </div>
 
-    <script>
-        // Vue.component('BotaoContador', {
-        //     data() {
-        //         return {
-        //             total: 0
-        //         }
-        //     },
-        //     template: `<button @click="total++">Contar: {{total}} </button>`,
-        // })
+    <script type="module">
+        import BotaoContador from './BotaoContador.js';
+        import MenuPrincipal from './MenuPrincipal.js';
 
-        const ComponenteLocal = {
-            name: 'ComponenteLocal',
-            template: `<p>Componente Local</p>`
-        }
-
-        Vue.component('ComponenteGlobal', {
-            template: `<p>Isso é global</p>`
-        });
+        // Vue.component('BotaoContador', BotaoContador);
+        Vue.component('MenuPrincipal', MenuPrincipal);
 
         const vm = new Vue({
             el: '#app',
             components: {
-                ComponenteLocal
+                BotaoContador
             }
         });
-
     </script>
 
 </body>
