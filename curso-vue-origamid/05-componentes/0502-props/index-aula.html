@@ -17,13 +17,29 @@
     </div>
 
     <script type="module">
+        const ItemProduto = {
+            name: 'ItemProduto',
+            props: ['nomeFruta'],
+            template: `
+            <li>
+                <h2>{{nomeFruta}}</h2>
+                Esse é o nome: {{nomeFruta}}
+            </li>`
+        }
         const ListaProdutos = {
             name: 'ListaProdutos',
             props: ['frutas'],
+            components: {
+                ItemProduto
+            },
             template: `
             <ul>
             {{frutas}}
-                <li>Teste</li>
+                <item-produto 
+                    v-for="(fruta, index) in frutas" 
+                    :nomeFruta="fruta" 
+                    :key="fruta + index"
+                    ></item-produto>
             </ul>
             `,
         }
