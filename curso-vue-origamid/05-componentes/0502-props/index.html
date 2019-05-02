@@ -10,16 +10,32 @@
 </head>
 
 <body>
-    
-
     <div id="app">
-        
+        <botao-contador :valor="0"></botao-contador>
     </div>
 
     <script type="module">
+        const BotaoContador = {
+            name: 'BotaoContador',
+            props: {
+                valor: Number
+            },
+            data() {
+                return {
+                    valorAtual: this.valor
+                }
+            },
+            template: `<button @click="valorAtual++">Esse é o total {{valorAtual}}</button>`
+        }
 
         const vm = new Vue({
             el: '#app',
+            data: {
+                total: 0
+            },
+            components: {
+                BotaoContador
+            }
            
         });
     </script>
