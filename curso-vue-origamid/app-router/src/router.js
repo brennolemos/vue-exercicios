@@ -15,7 +15,15 @@ export default new Router({
         },
         {
             path: '/cursos',
-            component: Cursos
+            component: Cursos,
+            props: true,
+            children: [
+                {
+                    path: ':curso',
+                    component: Cursos,
+                }
+            ]
         },
+
     ]
 })

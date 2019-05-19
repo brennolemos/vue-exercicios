@@ -18,10 +18,24 @@ export default {
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  color: #234;
   margin-top: 60px;
+  border: 4px solid #234;
+  margin: 20px;
+  padding: 20px;
+}
+
+nav {
+  padding: 20px 0;
+}
+
+a {
+  padding: 10px;
+  color: #234;
+}
+
+.router-link-exact-active {
+  color: #4b8;
+  font-weight: bold;
 }
 </style>
